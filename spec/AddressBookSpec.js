@@ -30,3 +30,20 @@ describe('Address Book', function() {
 		expect(addressBook.getContact(0)).not.toBeDefined();
 	});
 });
+
+describe('Async Address Book', function() {
+	var addressBook = new AddressBook();
+
+	// "Done" is passed to the callback because it has to wait on an async operation to complete.
+	// Signal to the framework that our async function is done and we can continue testing.
+	beforeEach(function(done) {
+		addressBook.getInitialContacts(function() {
+			done();
+		});
+	});
+
+	it('should grab initial contacts', function() {
+		addressBook.getInitialContacts();
+		expect(addressBook.initialComplete).toBe(true);
+	});
+});
