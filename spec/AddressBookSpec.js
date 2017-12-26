@@ -1,8 +1,16 @@
 describe('Address Book', function() {
-	it('should be able to add a contact', function() {
-		var addressBook = new AddressBook(),
-			thisContact = new Contact();
 
+	// Declare variables in outer scope
+	var addressBook,
+		thisContact;
+
+	// Code that each test will run before completing other tasks
+	beforeEach(function() {
+		addressBook = new AddressBook();
+		thisContact = new Contact();
+	});
+
+	it('should be able to add a contact', function() {
 		addressBook.addContact(thisContact);
 
 		// If I were to get the first contact in my address book, addressBook.getContact(0)
